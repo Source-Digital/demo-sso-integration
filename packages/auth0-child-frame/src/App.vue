@@ -7,7 +7,6 @@ const errorParam = ref<string | null>(null)
 
 // get current query params
 const urlParams = new URLSearchParams(window.location.search)
-console.log(urlParams)
 const error = urlParams.get('error')
 const isLoginRedirect = urlParams.get('login_redirect') === 'true'
 const isLoggedOutRedirect = urlParams.get('logged_out') === 'true'
@@ -16,11 +15,16 @@ if (error) {
   console.error('Error logging in:', error)
 }
 
-if (!isLoginRedirect) {
+if (!isLoginRedirect && !isLoggedOutRedirect) {
   authStore.login().catch((err) => {
     console.error('Error logging in:', err)
   })
 }
+
+// before window unload, logout
+window.addEventListener('beforeunload', () => {
+  authStore.logout()
+})
 
 
 </script>
