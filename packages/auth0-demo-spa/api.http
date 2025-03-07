@@ -1,0 +1,10 @@
+POST https://api2-dev.sourcesync.io/auth/login/keycloak
+Content-Type: application/json
+
+{
+  "client_id": "your_client_id",
+  "client_secret": "your_client_secret",
+  "grant_type": "password",
+  "username": "your_username",
+  "password": "your_password"
+}

@@ -1,0 +1,19 @@
+{
+  "name": "demo-sso-integration",
+  "version": "1.0.0",
+  "description": "",
+  "private": true,
+  "scripts": {
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+  },
+  "engines": {
+    "pnpm": "^7.33.1 || ^8.5.1"
+  },
+  "workspaces": [
+    "./packages/*"
+  ]
+}
