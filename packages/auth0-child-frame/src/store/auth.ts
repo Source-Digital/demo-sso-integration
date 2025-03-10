@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia'
 import { computed, ref } from 'vue'
 import Keycloak from 'keycloak-js'
-import { authentication, createDirectus, readMe, readUser, refresh, rest, staticToken, type DirectusClient } from '@directus/sdk'
+import { authentication, createDirectus, readCollections, readItems, readMe, readUser, refresh, rest, staticToken, type DirectusClient } from '@directus/sdk'
 import axios from 'axios'
 
 interface SsoUserData {
@@ -123,9 +123,12 @@ export const useAuthStore = defineStore('authStore', () => {
       directusToken.value = response.data
 
       directusClient = createDirectusClient(response.data.accessToken)
-
       const me = await directusClient.request(readMe())
       currentUser.value = me.data
+
+      const activations = await directusClient.request(readItems('activations', {}))
+      // const collections = await directusClient.request(readCollections())
+      console.log('Activations:', activations)
 
       // return data
     } catch (error) {

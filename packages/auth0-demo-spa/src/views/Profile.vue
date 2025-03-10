@@ -18,9 +18,14 @@
       <highlightjs language="json" :code="JSON.stringify(user, null, 2)" />
     </div>
 
-    <div>
-      <iframe id="sourcesync-frame" src="http://localhost:3100/" style="width: 100%; height: 500px; border: none;">
+    <div class="row">
+      <p class="demo-menu" @click="url='http://localhost:3100/home'">Visit analytics</p>
+      <p class="demo-menu"  @click="url='http://localhost:3100/activations'">Visit activations</p>
+      <p class="demo-menu"  @click="url='http://localhost:3100/account'">Visit account</p>
+    </div>
 
+    <div>
+      <iframe id="sourcesync-frame" :src="url+'?nomenu=1&noheader=1&nofooter=1'" style="width: 100%; height: 700px; border: none;">
       </iframe>
     </div>
   </div>
@@ -28,16 +33,26 @@
 
 <script lang="ts">
 import { useAuth0 } from '@auth0/auth0-vue';
+import { ref } from 'vue';
 
 
 export default {
   name: "profile-view",
   setup() {
     const auth0 = useAuth0();
+    const url = ref('http://localhost:3100/home');
 
     return {
-      user: auth0.user
+      user: auth0.user,
+      url
     }
   }
 };
 </script>
+
+<style scoped>
+.demo-menu {
+  padding: 10px;
+  cursor: pointer;
+}
+</style>
