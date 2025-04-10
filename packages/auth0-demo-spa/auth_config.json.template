@@ -1,0 +1,5 @@
+//  Copy this file to auth_config.json and fill in the values
+{
+  "domain": "your-tenant.us.auth0.com",
+  "clientId": "client-id"
+}
